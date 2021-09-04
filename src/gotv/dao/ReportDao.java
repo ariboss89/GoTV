@@ -24,7 +24,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class ReportDao {
     private Koneksi con;
 
-    public void CetakHasil(String idRiwayat) {
+    public void CetakHasil(String idRiwayat, String nama) {
         
         con = new Koneksi();
 
@@ -32,6 +32,7 @@ public class ReportDao {
             HashMap parameter = new HashMap();
             File file = new File("src/gotv/view/report/HasilPerankingan.jasper");
             parameter.put("parameter1", idRiwayat);
+            parameter.put("parameter2", nama);
             JasperReport jp = (JasperReport) JRLoader.loadObject(file);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parameter, con.connect());
             JasperViewer.viewReport(jasperPrint, false);

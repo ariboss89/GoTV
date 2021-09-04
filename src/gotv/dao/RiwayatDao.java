@@ -54,12 +54,12 @@ public class RiwayatDao extends tb_riwayat {
         return idKriteria;
     };
     
-    public void Save(String idRiwayat, String tanggal, String nama, String c1, String c2, String c3, String c4, String S, String K, String ket) {
+    public void Save(String idRiwayat, String program, String tanggal, String nama, String c1, String c2, String c3, String c4, String S, String K, String ket) {
         con = new Koneksi();
         con.connect();
         try {
             st = con.conn.createStatement();
-            query = "insert into tb_riwayat(idriwayat, tanggal, alternatif, c1, c2, c3, c4, s, k, ket)values('" + idRiwayat + "','" + tanggal + "','" + nama + "','" + c1 + "', '"+c2+"','" + c3 + "','" + c4 + "','" + S + "','" + K + "','" + ket + "')";
+            query = "insert into tb_riwayat(idriwayat, program, tanggal, alternatif, c1, c2, c3, c4, s, k, ket)values('" + idRiwayat + "', '" + program + "','" + tanggal + "','" + nama + "','" + c1 + "', '"+c2+"','" + c3 + "','" + c4 + "','" + S + "','" + K + "','" + ket + "')";
             st.executeUpdate(query);
             st.close();
             con.conn.close();

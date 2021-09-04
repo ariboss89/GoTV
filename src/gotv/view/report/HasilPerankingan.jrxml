@@ -4,13 +4,17 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="parameter2" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT *FROM tb_riwayat WHERE idriwayat = $P{parameter1}]]>
+		<![CDATA[SELECT *FROM tb_riwayat WHERE idriwayat = $P{parameter1} AND program = $P{parameter2}]]>
 	</queryString>
 	<field name="Id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="idriwayat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="program" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tanggal" class="java.lang.String">
@@ -70,14 +74,14 @@
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="361" y="53" width="71" height="20" uuid="c284912a-ad01-4086-a0c8-02b612919781"/>
+				<reportElement x="326" y="53" width="106" height="20" uuid="c284912a-ad01-4086-a0c8-02b612919781"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="361" y="33" width="71" height="20" uuid="e223a1c6-ab8e-4544-b8d4-34e2b967f7ae"/>
+				<reportElement x="326" y="33" width="106" height="20" uuid="e223a1c6-ab8e-4544-b8d4-34e2b967f7ae"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -87,6 +91,18 @@
 				<reportElement x="432" y="33" width="123" height="20" uuid="6b6b0633-18fe-4108-9dd8-59a2caaf5d0f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{parameter1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="326" y="13" width="106" height="20" uuid="26deaa7f-009f-4f3f-8198-c59b9ab79c5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Program]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="13" width="123" height="20" uuid="c00aef51-f8af-4e7a-b54f-20d42dfbe038"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{parameter2}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

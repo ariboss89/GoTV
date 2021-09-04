@@ -47,16 +47,16 @@ public class FormKeputusan extends javax.swing.JFrame {
     String[][] res;
     String[] kolomNormalisasi = {"ID", "ALTERNATIF", "C1", "C2", "C3", "C4"};
     int jmlKolomNormalisasi = kolomNormalisasi.length;
-    int[] lebarNormalisasi = {200, 400, 200,300, 200, 200};
+    int[] lebarNormalisasi = {200, 400, 200, 300, 200, 200};
 
     String[] kolomPerankingan = {"ID", "ALTERNATIF", "C1", "C2", "C3", "C4", "S", "K", "KET"};
     int jmlKolomPerankingan = kolomPerankingan.length;
-    int[] lebarPerankingan = {200, 400, 200,300, 200, 200, 200, 200, 200};
+    int[] lebarPerankingan = {200, 400, 200, 300, 200, 200, 200, 200, 200};
 
     public FormKeputusan() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (dim.width - getWidth()) / 2+100;
+        int x = (dim.width - getWidth()) / 2 + 100;
         int y = (dim.height - getHeight()) / 2;
         setLocation(x, y);
         Refresh();
@@ -153,6 +153,8 @@ public class FormKeputusan extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
         btnCetak = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtNamaProgram = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -499,6 +501,10 @@ public class FormKeputusan extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("NAMA PROGRAM");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -507,14 +513,22 @@ public class FormKeputusan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
-                    .addComponent(btnCetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtNamaProgram))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNamaProgram, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCetak)
                 .addContainerGap())
@@ -564,7 +578,7 @@ public class FormKeputusan extends javax.swing.JFrame {
             c1 = Double.parseDouble(txtC1.getText().trim());
             c2 = Double.parseDouble(txtC2.getText().trim());
             c3 = Double.parseDouble(txtC3.getText().trim());
-            c4 = Double.parseDouble(txtC4.getText().trim());            
+            c4 = Double.parseDouble(txtC4.getText().trim());
             pd.Update(Id, nama, c1, c2, c3, c4);
             Refresh();
         }
@@ -647,55 +661,55 @@ public class FormKeputusan extends javax.swing.JFrame {
 //            if (rs.next()) {
 //                JOptionPane.showMessageDialog(null, "Data Keputusan Untuk tanggal " + tanggal + " Telah Ada");
 //            } else {
-                if (rowCountTabel1 < 2) {
-                    JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Alternatif Untuk Melanjutkan, Minimal 3 data !!");
-                } else {
+            if (rowCountTabel1 < 2) {
+                JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Alternatif Untuk Melanjutkan, Minimal 3 data !!");
+            } else {
 
-                    //Normalisasi
-                    DefaultTableModel dataModelTabel2 = (DefaultTableModel) jTable2.getModel();
-                    nd.Normalisasi(rowCountTabel1, nd.MinC1(), nd.SumC2(), nd.SumC3(), nd.SumC4(), jTable1, dataModelTabel2);
+                //Normalisasi
+                DefaultTableModel dataModelTabel2 = (DefaultTableModel) jTable2.getModel();
+                nd.Normalisasi(rowCountTabel1, nd.MinC1(), nd.SumC2(), nd.SumC3(), nd.SumC4(), jTable1, dataModelTabel2);
 
-                    //Bobot Matriks
-                    int rowCountTabel2 = jTable2.getRowCount();
-                    DefaultTableModel dataModelTabel3 = (DefaultTableModel) jTable3.getModel();
-                    bd.BobotMatriks(rowCountTabel2, jTable2, od.NilaiBobot("C1"), od.NilaiBobot("C2"), od.NilaiBobot("C3"), od.NilaiBobot("C4"), dataModelTabel3);
+                //Bobot Matriks
+                int rowCountTabel2 = jTable2.getRowCount();
+                DefaultTableModel dataModelTabel3 = (DefaultTableModel) jTable3.getModel();
+                bd.BobotMatriks(rowCountTabel2, jTable2, od.NilaiBobot("C1"), od.NilaiBobot("C2"), od.NilaiBobot("C3"), od.NilaiBobot("C4"), dataModelTabel3);
 
-                    //Optimalisasi
-                    int rowCountTabel3 = jTable3.getRowCount();
-                    int columnCountTabel3 = jTable3.getColumnCount();
-                    DefaultTableModel dataModelTabel4 = (DefaultTableModel) jTable4.getModel();
-                    od.Optimalisasi(rowCountTabel3, columnCountTabel3, jTable3, dataModelTabel4);
-                    UpdateS();
+                //Optimalisasi
+                int rowCountTabel3 = jTable3.getRowCount();
+                int columnCountTabel3 = jTable3.getColumnCount();
+                DefaultTableModel dataModelTabel4 = (DefaultTableModel) jTable4.getModel();
+                od.Optimalisasi(rowCountTabel3, columnCountTabel3, jTable3, dataModelTabel4);
+                UpdateS();
 
-                    //Perankingan
-                    int rowCountTabel4 = jTable4.getRowCount();
-                    int columnCountTabel4 = jTable4.getColumnCount();
-                    Double maxS = prd.FindMaxSValue();
-                    DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
+                //Perankingan
+                int rowCountTabel4 = jTable4.getRowCount();
+                int columnCountTabel4 = jTable4.getColumnCount();
+                Double maxS = prd.FindMaxSValue();
+                DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
 
-                    prd.Perankingan(rowCountTabel4, columnCountTabel4, jTable4, maxS, dataModel);
-                    UpdateK();
- 
-                    res = prd.Show();
-                    tbm.SetTabel(jTable6, res, kolomPerankingan, jmlKolomPerankingan, lebarPerankingan);
+                prd.Perankingan(rowCountTabel4, columnCountTabel4, jTable4, maxS, dataModel);
+                UpdateK();
 
-                    int rowCounts = jTable6.getRowCount();
-                    for (int i = 0; i < rowCounts; i++) {
+                res = prd.Show();
+                tbm.SetTabel(jTable6, res, kolomPerankingan, jmlKolomPerankingan, lebarPerankingan);
 
-                        String IdAlternatif = jTable6.getValueAt(i, 0).toString();
-                        int rank = i + 1;
-                        String ket = "Ranking " + rank;
-                        prd.UpdateKet(IdAlternatif, ket);
-                    }
+                int rowCounts = jTable6.getRowCount();
+                for (int i = 0; i < rowCounts; i++) {
 
-                    res = prd.Show();
-                    tbm.SetTabel(jTable6, res, kolomPerankingan, jmlKolomPerankingan, lebarPerankingan);
+                    String IdAlternatif = jTable6.getValueAt(i, 0).toString();
+                    int rank = i + 1;
+                    String ket = "Ranking " + rank;
+                    prd.UpdateKet(IdAlternatif, ket);
+                }
 
-                    btnHitung.setEnabled(false);
-                    btnCetak.setEnabled(true);
-                    btnSave.setEnabled(false);
-                    cbNama.setEnabled(false);
-                    btnNew.setEnabled(false);
+                res = prd.Show();
+                tbm.SetTabel(jTable6, res, kolomPerankingan, jmlKolomPerankingan, lebarPerankingan);
+
+                btnHitung.setEnabled(false);
+                btnCetak.setEnabled(true);
+                btnSave.setEnabled(false);
+                cbNama.setEnabled(false);
+                btnNew.setEnabled(false);
                 //}
             }
         } catch (SQLException ex) {
@@ -705,27 +719,32 @@ public class FormKeputusan extends javax.swing.JFrame {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime now = LocalDateTime.now();
-
-        String tanggal = (dtf.format(now));
-
-        int count = jTable6.getRowCount();
-        for (int i = 0; i < count; i++) {
-            String namaa = jTable6.getValueAt(i, 1).toString();
-            String c11 = jTable6.getValueAt(i, 2).toString();
-            String c22 = jTable6.getValueAt(i, 3).toString();
-            String c33 = jTable6.getValueAt(i, 4).toString();
-            String c44 = jTable6.getValueAt(i, 5).toString();
-            String s = jTable6.getValueAt(i, 6).toString();
-            String k = jTable6.getValueAt(i, 7).toString();
-            String ket = jTable6.getValueAt(i, 8).toString();
-            
-            rwd.Save(rwd.getIdRiwayat(), tanggal, namaa, c11, c22, c33, c44, s, k, ket);
+        if (txtNamaProgram.getText().equals("")) {
+        JOptionPane.showMessageDialog(null, "Input Data Program Terlebih Dahulu !!");
         }
-       
-        rd.CetakHasil(rwd.getIdRiwayat());
-        dispose();
+        else{
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime now = LocalDateTime.now();
+
+            String tanggal = (dtf.format(now));
+
+            int count = jTable6.getRowCount();
+            for (int i = 0; i < count; i++) {
+                String namaa = jTable6.getValueAt(i, 1).toString();
+                String c11 = jTable6.getValueAt(i, 2).toString();
+                String c22 = jTable6.getValueAt(i, 3).toString();
+                String c33 = jTable6.getValueAt(i, 4).toString();
+                String c44 = jTable6.getValueAt(i, 5).toString();
+                String s = jTable6.getValueAt(i, 6).toString();
+                String k = jTable6.getValueAt(i, 7).toString();
+                String ket = jTable6.getValueAt(i, 8).toString();
+
+                rwd.Save(rwd.getIdRiwayat(), txtNamaProgram.getText().trim(), tanggal, namaa, c11, c22, c33, c44, s, k, ket);
+            }
+
+            rd.CetakHasil(rwd.getIdRiwayat(), txtNamaProgram.getText().trim());
+            dispose();
+        }
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -873,6 +892,7 @@ public class FormKeputusan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -897,5 +917,6 @@ public class FormKeputusan extends javax.swing.JFrame {
     private javax.swing.JTextField txtC2;
     private javax.swing.JTextField txtC3;
     private javax.swing.JTextField txtC4;
+    private javax.swing.JTextField txtNamaProgram;
     // End of variables declaration//GEN-END:variables
 }

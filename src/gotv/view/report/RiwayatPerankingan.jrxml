@@ -13,6 +13,9 @@
 	<field name="idriwayat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="program" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tanggal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -151,6 +154,18 @@
 				<reportElement x="403" y="50" width="141" height="20" uuid="933d0e80-81dd-4bda-a1fb-42adada6fa4a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="292" y="70" width="111" height="20" uuid="a240acd9-5c35-4d13-8f3d-a56156ccf0c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA PROGRAM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="403" y="70" width="141" height="20" uuid="c47bf14d-00be-4dc7-8994-bc6c0d974222"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{program}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

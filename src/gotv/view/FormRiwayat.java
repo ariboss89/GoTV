@@ -153,7 +153,7 @@ public class FormRiwayat extends javax.swing.JFrame {
         SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
         String idriwayat = jComboBox1.getSelectedItem().toString();
         
-        rwd.CetakHasil(idriwayat);
+        rwd.CetakRiwayat(idriwayat);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
